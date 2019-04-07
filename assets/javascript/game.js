@@ -6,41 +6,75 @@
 
 //DOM Variables
 let startInstructions = document.getElementById('start-instruct');
+let wordJumbotron = document.getElementById('word-jumbotron');
 let wordField = document.getElementById('word-field');
-let letterInput = document.getElementById('letter-input');
+let input = document.getElementById('input');
+let inputLetter = document.getElementById('input-letter');
+let badLetter = document.getElementById('bad-letter');
 let attemptDetail = document.getElementById('attempt-detail');
 
 //Game Variables
 let gameStarted = false;
+var characterName = [];
+var hiddenName = [];
+var incorrectLetters = [];
 
-displayElement(wordField, false);
-displayElement(letterInput, false);
+// displayElement(wordField, false);
+displayElement(wordJumbotron, false);
+displayElement(input, false);
 displayElement(attemptDetail, false);
 
 document.onkeyup = function (event) {
     if (gameStarted) {
+        var letter = event.key.toUpperCase();
+        inputLetter.innerHTML = letter;
+        if (findLetterMatch(letter)) {
+            wordField.innerHTML = hiddenName.join(" ");
+        }
+        else {
+            incorrectLetters.push(letter);
+            badLetter.innerHTML = incorrectLetters.join();
+        }
         console.log(event.key);
     }
     else {
-        playGame();
+        startGame();
         console.log("starting");
     }
 }
 
-function playGame() {
+function startGame() {
     gameStarted = true;
-    createGameBoard();
-    //TODO: 
-}
-
-function createGameBoard() {
     displayElement(startInstructions, false);
-    displayElement(wordField, true);
-    displayElement(letterInput, true);
+    displayElement(input, true);
     displayElement(attemptDetail, true);
 
-    //TODO: Get Word
-    //TODO: Set Underscores in word field
+    getCharacterName();
+    wordField.innerHTML = hiddenName.join(" ");
+    // displayElement(wordField, true);
+    displayElement(wordJumbotron, true);
+}
+
+function getCharacterName() {
+    //TODO: Either use array or call API
+    characterName = "SKYWALKER".split('');
+    for (var i = 0; i < characterName.length; i++)
+    {
+        // hiddenName.push("<u>" + characterName[i] + "</u>");
+        hiddenName.push(" <u>x</u> ");
+    }
+    console.log("Size of Array: " + hiddenName.length)
+}
+
+function findLetterMatch(letter) {
+    var isLetterFound = false;
+    for (var i = 0; i < characterName.length; i++) {
+        if (letter === characterName[i]) {
+            hiddenName[i] = letter;
+            isLetterFound = true;
+        }
+    }
+    return isLetterFound;
 }
 
 function displayElement(element, showElement) {
