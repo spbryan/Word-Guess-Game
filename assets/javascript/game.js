@@ -105,6 +105,9 @@ function resetGame() {
     puzzleInput = [];
     incorrectGuesses = [];
     guessCtr = 6;
+    incorrectGuess.innerHTML = incorrectGuesses.join();
+    inputCharacter.innerHTML = "";
+    numberOfGuesses.innerHTML = guessCtr;
 }
 
 /**
