@@ -12,38 +12,30 @@ let input = document.getElementById('input');
 let inputCharacter = document.getElementById('input-character');
 let incorrectGuess = document.getElementById('incorrect-guess');
 let attemptDetail = document.getElementById('attempt-detail');
+let playerFail = document.getElementById('player-fail');
+let playerWin = document.getElementById('player-win');
 var numberOfGuesses = document.getElementById('number-of-guesses');
-let youFail = document.getElementById('you-fail');
-let youWin = document.getElementById('you-win');
+var numberOfWins = document.getElementById('number-of-wins');
+var numberOfLosses = document.getElementById('number-of-losses');
 
 //Game Variables
 let gameStarted = false;
-var characterName = [];
-var hiddenName = [];
+var puzzleSolution = [];
+var puzzleInput = [];
 var incorrectGuesses = [];
-var wins = 0;
-var losses = 0;
-var guessCtr = 5;
+var winCtr = 0;
+var lossCtr = 0;
+var guessCtr = 6;
 
-gameReset();
+resetGame();
 
+/**
+ * key recorder that either initiates a new game or collects puzzle input
+ */
 document.onkeyup = function (event) {
     if (gameStarted) {
-        var letter = event.key.toUpperCase();
-        inputCharacter.innerHTML = letter;
-        if (findLetterMatch(letter)) {
-            wordField.innerHTML = hiddenName.join(" ");
-        }
-        else {
-            incorrectGuesses.push(letter);
-            incorrectGuess.innerHTML = incorrectGuesses.join();
-            numberOfGuesses.innerHTML = parseInt(guessCtr--);
-        }
-        console.log(event.key);
-        if (guessCtr === 0) {
-            gameReset();
-            displayElement(youFail, true);
-        }
+        var character = event.key.toUpperCase();
+        playGame(character);
     }
     else {
         startGame();
@@ -51,52 +43,119 @@ document.onkeyup = function (event) {
     }
 }
 
+/**
+ * Start the game
+ */
 function startGame() {
     gameStarted = true;
     displayElement(startInstructions, false);
     displayElement(input, true);
     displayElement(attemptDetail, true);
+    displayElement(playerFail, false);
+    displayElement(playerWin, false);
 
-    getCharacterName();
-    wordField.innerHTML = hiddenName.join(" ");
+    createNewPuzzle();
+    wordField.innerHTML = puzzleInput.join(" ");
     // displayElement(wordField, true);
     displayElement(wordJumbotron, true);
 }
 
-function gameReset() {
+/**
+ * Basic Game Flow
+ * @param character 
+ */
+function playGame(character) {
+    if (isAlphaNumeric(character)) {
+        inputCharacter.innerHTML = character;
+        if (findCharacterMatch(character)) {
+            wordField.innerHTML = puzzleInput.join(" ");
+            if (isPuzzleSolved()) {
+                resetGame();
+                displayElement(playerWin, true);
+                numberOfWins.innerHTML = ++winCtr;
+            }
+        }
+        else {
+            incorrectGuesses.push(character);
+            incorrectGuess.innerHTML = incorrectGuesses.join();
+            numberOfGuesses.innerHTML = --guessCtr;
+        }
+        console.log(event.key);
+        if (guessCtr === 0) {
+            resetGame();
+            displayElement(playerFail, true);
+            numberOfLosses.innerHTML = ++lossCtr;
+        }
+    }
+}
+
+/**
+ * Reset the game
+ */
+function resetGame() {
     displayElement(wordJumbotron, false);
     displayElement(input, false);
     displayElement(attemptDetail, false);
-    displayElement(youFail, false);
-    displayElement(youWin, false);
+    displayElement(playerFail, false);
+    displayElement(playerWin, false);
     gameStarted = false;
-    characterName = [];
-    hiddenName = [];
+    puzzle = [];
+    puzzleInput = [];
     incorrectGuesses = [];
     guessCtr = 6;
 }
 
-function getCharacterName() {
-    //TODO: Either use array or call API
-    characterName = "SKYWALKER".split('');
-    for (var i = 0; i < characterName.length; i++) {
-        // hiddenName.push("<u>" + characterName[i] + "</u>");
-        hiddenName.push(" <u>x</u> ");
-    }
-    console.log("Size of Array: " + hiddenName.length)
-}
-
-function findLetterMatch(letter) {
-    var isLetterFound = false;
-    for (var i = 0; i < characterName.length; i++) {
-        if (letter === characterName[i]) {
-            hiddenName[i] = letter;
-            isLetterFound = true;
+/**
+ * Create a new puzzle
+ */
+function createNewPuzzle() {
+    generateRandomStarWarsCharacter();
+    // puzzleSolution = "SKYWALKER".split('');
+    for (var i = 0; i < puzzleSolution.length; i++) {
+        if (puzzleSolution[i] === "-" || puzzleSolution[i] === " ") {
+            puzzleInput.push(puzzleSolution[i]);
+        }
+        else {
+            puzzleInput.push("<u>x</u>");
         }
     }
-    return isLetterFound;
+    console.log(puzzleInput);
 }
 
+/**
+ * Determine if input character matches value of the puzzle solution
+ * @param character 
+ */
+function findCharacterMatch(character) {
+    var isFound = false;
+    for (var i = 0; i < puzzleSolution.length; i++) {
+        if (character === puzzleSolution[i]) {
+            puzzleInput[i] = character;
+            isFound = true;
+        }
+    }
+    return isFound;
+}
+
+/**
+ * Iterate each character of the puzzle input.  If they
+ * match the puzzle solution then the puzzle is solved
+ */
+function isPuzzleSolved() {
+    for (var i = 0; i < puzzleSolution.length; i++) {
+        if (puzzleSolution[i] !== puzzleInput[i]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+/**
+ * Toggles display on and off for elements 
+ * @param element 
+ * @param showElement 
+ */
 function displayElement(element, showElement) {
     if (showElement) {
         element.style.display = "block";
@@ -104,4 +163,45 @@ function displayElement(element, showElement) {
     else {
         element.style.display = "none";
     }
+}
+
+/**
+ * Determine if input character is alpha-numeric
+ * @param character 
+ */
+function isAlphaNumeric(character) {
+    if (!character.match(/^[0-9A-Z]+$/)) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+/**
+ * Call swapi API to get star wars character name
+ */
+function generateRandomStarWarsCharacter() {
+    // var request = new XMLHttpRequest();
+    // request.open('GET', 'https://swapi.co/api/people/1/', true);
+    // request.onload = function () {
+    //     var data = JSON.parse(this.response);
+    //     starWarsCharacter = data.name;
+    //     console.log("1" + starWarsCharacter);
+    // }
+    // request.send();
+
+    //30 characters from original trilogy
+    var starWarsCharacterList = ["Luke Skywalker", "C-3P0", "R2-D2",
+        "Darth Vader", "Leia Organa", "Owen Lars", "Beru Lars", "R5-D4",
+        "Biggs Darklighter", "Obi-Wan Kenobi", "Anakin Skywalker", "Wilhuff Tarkin",
+        "Chewbacca", "Han Solo", "Greedo", "Jabba Desilijic Tiure", "Wedge Antilles",
+        "Jek Tono Porkins", "Yoda", "Palpatine", "Boba Fett", "IG-88", "Bossk",
+        "Lando Calrissian", "Lobot", "Ackbar", "Mon Mothma", "Arvel Crynyd",
+        "Wicket Systri Warrick", "Nien Nunb"
+    ];
+
+    // var thisCharacter = starWarsCharacterList[Math.floor(Math.random() * 30)].toUpperCase();
+    var thisCharacter = starWarsCharacterList[0].toUpperCase();
+    puzzleSolution = thisCharacter.split('');
 }
