@@ -55,7 +55,8 @@ function startGame() {
     displayElement(playerWin, false);
 
     createNewPuzzle();
-    wordField.innerHTML = puzzleInput.join(" ");
+    displayPuzzle();
+    // wordField.innerHTML = puzzleInput.join(" ");
     // displayElement(wordField, true);
     displayElement(wordJumbotron, true);
 }
@@ -68,7 +69,8 @@ function playGame(character) {
     if (isAlphaNumeric(character)) {
         inputCharacter.innerHTML = character;
         if (findCharacterMatch(character)) {
-            wordField.innerHTML = puzzleInput.join(" ");
+            displayPuzzle();
+            // wordField.innerHTML = puzzleInput.join(" ");
             if (isPuzzleSolved()) {
                 resetGame();
                 displayElement(playerWin, true);
@@ -120,6 +122,29 @@ function createNewPuzzle() {
         }
     }
     console.log(puzzleInput);
+}
+
+/**
+ * Display the formatted puzzle
+ */
+function displayPuzzle() {
+    // wordField.innerHTML = puzzleInput.join(" ");
+    var puzzleDisplay = "Error";
+    for(var i = 0; i < puzzleInput.length; i++) {
+        if (puzzleInput[i] !== " ") {
+            if (i === 0) {
+                puzzleDisplay = puzzleInput[i];
+            }
+            else {
+                puzzleDisplay += puzzleInput[i];
+            }
+        }
+        else {
+            puzzleDisplay += "  ";
+        }
+    }
+
+    wordField.innerHTML = puzzleDisplay;
 }
 
 /**
