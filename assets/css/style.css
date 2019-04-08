@@ -32,3 +32,11 @@ body {
     color: #f4e51a;
 }
 
+#word-jumbotron {
+    /* background-image: url(../images/stars2.jpg); */
+    border-color:  #10fefe;
+    border-style: solid;
+    border-width: 4px 4px;
+    border-radius: 25px;
+}
+
