@@ -136,11 +136,14 @@ function displayPuzzle() {
                 puzzleDisplay = puzzleInput[i];
             }
             else {
-                puzzleDisplay += puzzleInput[i];
+                puzzleDisplay += " ";
+                puzzleDisplay += (puzzleInput[i]);
+                puzzleDisplay += " ";
+                console.log(puzzleDisplay);
             }
         }
         else {
-            puzzleDisplay += "  ";
+            puzzleDisplay += "<br>";
         }
     }
 
@@ -226,7 +229,7 @@ function generateRandomStarWarsCharacter() {
         "Wicket Systri Warrick", "Nien Nunb"
     ];
 
-    // var thisCharacter = starWarsCharacterList[Math.floor(Math.random() * 30)].toUpperCase();
-    var thisCharacter = starWarsCharacterList[0].toUpperCase();
+    var thisCharacter = starWarsCharacterList[Math.floor(Math.random() * 30)].toUpperCase();
+    // var thisCharacter = starWarsCharacterList[0].toUpperCase();
     puzzleSolution = thisCharacter.split('');
 }
