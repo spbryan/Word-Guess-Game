@@ -9,33 +9,41 @@ let startInstructions = document.getElementById('start-instruct');
 let wordJumbotron = document.getElementById('word-jumbotron');
 let wordField = document.getElementById('word-field');
 let input = document.getElementById('input');
-let inputLetter = document.getElementById('input-letter');
-let badLetter = document.getElementById('bad-letter');
+let inputCharacter = document.getElementById('input-character');
+let incorrectGuess = document.getElementById('incorrect-guess');
 let attemptDetail = document.getElementById('attempt-detail');
+var numberOfGuesses = document.getElementById('number-of-guesses');
+let youFail = document.getElementById('you-fail');
+let youWin = document.getElementById('you-win');
 
 //Game Variables
 let gameStarted = false;
 var characterName = [];
 var hiddenName = [];
-var incorrectLetters = [];
+var incorrectGuesses = [];
+var wins = 0;
+var losses = 0;
+var guessCtr = 5;
 
-// displayElement(wordField, false);
-displayElement(wordJumbotron, false);
-displayElement(input, false);
-displayElement(attemptDetail, false);
+gameReset();
 
 document.onkeyup = function (event) {
     if (gameStarted) {
         var letter = event.key.toUpperCase();
-        inputLetter.innerHTML = letter;
+        inputCharacter.innerHTML = letter;
         if (findLetterMatch(letter)) {
             wordField.innerHTML = hiddenName.join(" ");
         }
         else {
-            incorrectLetters.push(letter);
-            badLetter.innerHTML = incorrectLetters.join();
+            incorrectGuesses.push(letter);
+            incorrectGuess.innerHTML = incorrectGuesses.join();
+            numberOfGuesses.innerHTML = parseInt(guessCtr--);
         }
         console.log(event.key);
+        if (guessCtr === 0) {
+            gameReset();
+            displayElement(youFail, true);
+        }
     }
     else {
         startGame();
@@ -55,11 +63,23 @@ function startGame() {
     displayElement(wordJumbotron, true);
 }
 
+function gameReset() {
+    displayElement(wordJumbotron, false);
+    displayElement(input, false);
+    displayElement(attemptDetail, false);
+    displayElement(youFail, false);
+    displayElement(youWin, false);
+    gameStarted = false;
+    characterName = [];
+    hiddenName = [];
+    incorrectGuesses = [];
+    guessCtr = 6;
+}
+
 function getCharacterName() {
     //TODO: Either use array or call API
     characterName = "SKYWALKER".split('');
-    for (var i = 0; i < characterName.length; i++)
-    {
+    for (var i = 0; i < characterName.length; i++) {
         // hiddenName.push("<u>" + characterName[i] + "</u>");
         hiddenName.push(" <u>x</u> ");
     }
