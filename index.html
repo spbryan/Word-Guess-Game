@@ -12,17 +12,32 @@
 
 <body>
     <section class="container">
-        <section class="row">
-            <div class="col-sm-12">
-                <img src="./assets/images/WordGuess2.JPG" alt="Word Guess Title">
+        <section class="row text-center mt-3">
+            <div class="col-sm-12" id="title">
+                <img src="./assets/images/WordGuess2.JPG" class="img-fluid" id="title-image" alt="Word Guess Title">
+            </div>
+        </section>
+        <section class="row mt-4" id="scoreboard">
+            <div class="col-sm-6 text-right">
+                <!-- <h2>Wins <span id="number-of-wins" class="badge badge-secondary badge-warning light-side">0</span></h2> -->
+                <h2>Wins <span id="number-of-wins" class="badge badge-secondary light-side">0</span></h2>
+            </div>
+            <div class="col-sm-6 text-left">
+                <h2>Losses <span id="number-of-losses" class="badge badge-secondary badge-warning dark-side">0</span></h2>
             </div>
         </section>
         <section class="row">
-            <div class="col-sm-12" id="start-instruct">
+            <div class="col-sm-12 mt-5 text-center" id="start-instruct">
                 <h1>Press Any Key To Get Started...</h1>
             </div>
-            <div class="col-sm-12 jumbotron" id="word-jumbotron">
-                <h1 class="display-4" id="word-field">Temp placeholder</h1>
+            <div class="col-sm-9 jumbotron" id="word-jumbotron">
+                <h1 class="display-4" id="word-field"></h1>
+            </div>
+            <div class="col-sm-3 jumbotron" id="guess-jumbotron">
+                <!-- <h1>Number of Guesses Remaining</h1> -->
+                <!-- <h2 id="number-of-guesses">6</h2> -->
+                <h1>Guesses Remaining... <span id="number-of-guesses" class="badge badge-secondary badge-warning">6</span>
+                </h1>
             </div>
         </section>
         <section class="row">
@@ -31,10 +46,10 @@
                 <h2 id="input-character"></h2>
             </div>
             <div class="col-sm-6" id="attempt-detail">
-                <div class="jumbotron">
+                <!-- <div class="jumbotron">
                     <h1>Number of Guesses Remaining</h1>
                     <h2 id="number-of-guesses">6</h2>
-                </div>
+                </div> -->
                 <div class="jumbotron">
                     <h1>INCORRECT GUESSES</h1>
                     <h2 id="incorrect-guess"></h2>
@@ -44,7 +59,7 @@
                 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/ONBAMgTC4dw?controls=0"
                     frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe> -->
-                <img src="./assets/images/allTooEasy.jpg" alt="Word Guess Title">
+                <img src="./assets/images/allTooEasy.jpg" class="img-fluid" alt="Word Guess Title">
                 <h1>ALL TOO EASY...</h1>
                 <h1>Press Any Key To Continue...</h1>
             </div>
@@ -52,13 +67,13 @@
                 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/maOaDsZ1oAM?controls=0"
                     frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe> -->
-                <img src="./assets/images/deathstar.jpg" alt="Word Guess Title">
+                <img src="./assets/images/deathstar.jpg" class="img-fluid" alt="Word Guess Title">
                 <h1>THE FORCE WILL BE WITH YOU...</h1>
                 <h1>ALWAYS...</h1>
                 <h1>Press Any Key To Continue...</h1>
             </div>
         </section>
-        <section class="row">
+        <!-- <section class="row">
             <div class="col-sm-6">
                 <h1>Wins</h1>
                 <h2 id="number-of-wins">0</h2>
@@ -67,7 +82,7 @@
                 <h1>Losses</h1>
                 <h2 id="number-of-losses"></h2>
             </div>
-        </section>
+        </section> -->
 
     </section>
 

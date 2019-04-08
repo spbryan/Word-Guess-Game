@@ -7,6 +7,7 @@
 //DOM Variables
 let startInstructions = document.getElementById('start-instruct');
 let wordJumbotron = document.getElementById('word-jumbotron');
+let guessJumbotron = document.getElementById('guess-jumbotron');
 let wordField = document.getElementById('word-field');
 let input = document.getElementById('input');
 let inputCharacter = document.getElementById('input-character');
@@ -59,6 +60,7 @@ function startGame() {
     // wordField.innerHTML = puzzleInput.join(" ");
     // displayElement(wordField, true);
     displayElement(wordJumbotron, true);
+    displayElement(guessJumbotron, true);
 }
 
 /**
@@ -100,6 +102,7 @@ function resetGame() {
     displayElement(attemptDetail, false);
     displayElement(playerFail, false);
     displayElement(playerWin, false);
+    displayElement(guessJumbotron, false);
     gameStarted = false;
     puzzle = [];
     puzzleInput = [];
