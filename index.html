@@ -23,36 +23,40 @@
                 <h2>Wins <span id="number-of-wins" class="badge badge-secondary light-side">0</span></h2>
             </div>
             <div class="col-sm-6 text-left">
-                <h2>Losses <span id="number-of-losses" class="badge badge-secondary badge-warning dark-side">0</span></h2>
+                <h2>Losses <span id="number-of-losses" class="badge badge-secondary badge-warning dark-side">0</span>
+                </h2>
             </div>
         </section>
         <section class="row">
             <div class="col-sm-12 mt-5 text-center" id="start-instruct">
                 <h1>Press Any Key To Get Started...</h1>
             </div>
-            <div class="col-sm-9 jumbotron mt-5" id="word-jumbotron">
+            <div class="col-sm-1">
+            </div>
+            <div class="col-sm-10 jumbotron mt-5 h-75 light-side-box" id="word-element">
                 <h1 class="display-4" id="word-field"></h1>
             </div>
-            <div class="col-sm-3 jumbotron" id="guess-jumbotron">
-                <!-- <h1>Number of Guesses Remaining</h1> -->
-                <!-- <h2 id="number-of-guesses">6</h2> -->
-                <h1>Guesses Remaining... <span id="number-of-guesses" class="badge badge-secondary badge-warning">6</span>
-                </h1>
+            <div class="col-sm-1">
             </div>
         </section>
         <section class="row">
-            <div class="col-sm-6 jumbotron" id="input">
-                <h1>ENTER A LETTER/NUMBER</h1>
-                <h2 id="input-character"></h2>
+            <div class="col-sm-4" id="input">
+                <div class="jumbotron dark-side-box">
+                    <h2>Enter A Letter/Number</h2>
+                    <h2 id="input-character"></h2>
+                </div>
             </div>
-            <div class="col-sm-6" id="attempt-detail">
-                <!-- <div class="jumbotron">
-                    <h1>Number of Guesses Remaining</h1>
-                    <h2 id="number-of-guesses">6</h2>
-                </div> -->
-                <div class="jumbotron">
-                    <h1>INCORRECT GUESSES</h1>
+            <div class="col-sm-4" id="attempt-detail">
+                <div class="jumbotron dark-side-box">
+                    <h2>Failures</h2>
                     <h2 id="incorrect-guess"></h2>
+                </div>
+            </div>
+            <div class="col-sm-4" id="guess-element">
+                <div class="jumbotron dark-side-box">
+                    <h2>Attempts Left <span id="number-of-guesses"
+                            class="badge badge-secondary badge-warning">6</span>
+                    </h2>
                 </div>
             </div>
             <div class="col-sm-12" id="player-fail">
@@ -73,16 +77,6 @@
                 <h1>Press Any Key To Continue...</h1>
             </div>
         </section>
-        <!-- <section class="row">
-            <div class="col-sm-6">
-                <h1>Wins</h1>
-                <h2 id="number-of-wins">0</h2>
-            </div>
-            <div class="col-sm-6">
-                <h1>Losses</h1>
-                <h2 id="number-of-losses"></h2>
-            </div>
-        </section> -->
 
     </section>
 

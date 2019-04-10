@@ -9,9 +9,27 @@ body {
     color: black;
 }
 
+.light-side-box {
+    background: none;
+    border-color:  #10fefe;
+    border-style: solid;
+    border-width: 5px 5px;
+    border-radius: 25px;
+    text-align: center;
+}
+
 .dark-side {
     background-color:#f80328;
     color: black;
+}
+
+.dark-side-box {
+    background: none;
+    border-color:  #dcdce5;
+    border-style: solid;
+    border-width: 5px 5px;
+    border-radius: 25px;
+    text-align: center;
 }
 
 /* ID Styles */
@@ -22,21 +40,21 @@ body {
     border-radius: 25px;
 }
 
-#start-instruct h1 {
+#start-instruct,
+#word-element h1 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #f4e51a;
 }
 
-#scoreboard h2 {
+#scoreboard,
+#input, 
+#attempt-detail,
+#guess-element h2 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #f4e51a;
 }
 
-#word-jumbotron {
-    /* background-image: url(../images/stars2.jpg); */
-    border-color:  #10fefe;
-    border-style: solid;
-    border-width: 4px 4px;
-    border-radius: 25px;
+#word-element h1 {
+    font-size: 85px;
 }
 
