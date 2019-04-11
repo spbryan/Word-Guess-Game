@@ -58,8 +58,6 @@ function startGame() {
 
     createNewPuzzle();
     displayPuzzle();
-    // wordField.innerHTML = puzzleInput.join(" ");
-    // displayElement(wordField, true);
     displayElement(wordElement, true);
     displayElement(guessElement, true);
 }
@@ -73,7 +71,6 @@ function playGame(character) {
         inputCharacter.innerHTML = character;
         if (findCharacterMatch(character)) {
             displayPuzzle();
-            // wordField.innerHTML = puzzleInput.join(" ");
             if (isPuzzleSolved()) {
                 finalSolution.textContent = "(Answer: " + puzzleSolution.join("") + ")";
                 resetGame();
@@ -121,7 +118,6 @@ function resetGame() {
  */
 function createNewPuzzle() {
     generateRandomStarWarsCharacter();
-    // puzzleSolution = "SKYWALKER".split('');
     for (var i = 0; i < puzzleSolution.length; i++) {
         if (puzzleSolution[i] === "-" || puzzleSolution[i] === " ") {
             puzzleInput.push(puzzleSolution[i]);
@@ -137,7 +133,6 @@ function createNewPuzzle() {
  * Display the formatted puzzle
  */
 function displayPuzzle() {
-    // wordField.innerHTML = puzzleInput.join(" ");
     var puzzleDisplay = "Error";
     for(var i = 0; i < puzzleInput.length; i++) {
         if (puzzleInput[i] !== " ") {
@@ -239,6 +234,5 @@ function generateRandomStarWarsCharacter() {
     ];
 
     var thisCharacter = starWarsCharacterList[Math.floor(Math.random() * 30)].toUpperCase();
-    // var thisCharacter = starWarsCharacterList[0].toUpperCase();
     puzzleSolution = thisCharacter.split('');
 }
