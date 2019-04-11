@@ -3,6 +3,12 @@ body {
     background-image: url(../images/stars2.jpg);
 }
 
+p {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #f4e51a;
+    font-style: italic;
+}
+
 /* Class Styles */
 .light-side {
     background-color: #10fefe;
@@ -23,13 +29,14 @@ body {
     color: black;
 }
 
+
 .dark-side-box {
     background: none;
     border-color:  #dcdce5;
     border-style: solid;
     border-width: 5px 5px;
     border-radius: 25px;
-    text-align: center;
+    text-align: left;
 }
 
 /* ID Styles */
@@ -41,7 +48,9 @@ body {
 }
 
 #start-instruct,
-#word-element h1 {
+#word-element,
+#player-win,
+#player-fail h1 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #f4e51a;
 }
@@ -56,5 +65,24 @@ body {
 
 #word-element h1 {
     font-size: 85px;
+}
+
+#player-fail,
+#player-win {
+    text-align: center;
+}
+
+#fail-image {
+    width: 400px;
+    height: 400px;
+}
+
+#win-image {
+    width: 600px;
+    height: 400px;
+}
+
+#too-easy {
+    margin: 30px 0;
 }
 

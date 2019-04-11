@@ -18,6 +18,7 @@ let playerWin = document.getElementById('player-win');
 var numberOfGuesses = document.getElementById('number-of-guesses');
 var numberOfWins = document.getElementById('number-of-wins');
 var numberOfLosses = document.getElementById('number-of-losses');
+var finalSolution = document.querySelector(".final-solution");
 
 //Game Variables
 let gameStarted = false;
@@ -74,6 +75,7 @@ function playGame(character) {
             displayPuzzle();
             // wordField.innerHTML = puzzleInput.join(" ");
             if (isPuzzleSolved()) {
+                finalSolution.textContent = "(Answer: " + puzzleSolution.join("") + ")";
                 resetGame();
                 displayElement(playerWin, true);
                 numberOfWins.innerHTML = ++winCtr;
@@ -86,6 +88,7 @@ function playGame(character) {
         }
         console.log(event.key);
         if (guessCtr === 0) {
+            finalSolution.textContent = "(Answer: " + puzzleSolution.join("") + ")";
             resetGame();
             displayElement(playerFail, true);
             numberOfLosses.innerHTML = ++lossCtr;

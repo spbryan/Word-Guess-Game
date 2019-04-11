@@ -42,8 +42,9 @@
         <section class="row">
             <div class="col-sm-4" id="input">
                 <div class="jumbotron dark-side-box">
-                    <h2>Enter A Letter/Number</h2>
-                    <h2 id="input-character"></h2>
+                    <h2>Enter A Letter/Number: <span id="input-character"
+                            class="badge badge-secondary light-side"></span>
+                    </h2>
                 </div>
             </div>
             <div class="col-sm-4" id="attempt-detail">
@@ -54,24 +55,31 @@
             </div>
             <div class="col-sm-4" id="guess-element">
                 <div class="jumbotron dark-side-box">
-                    <h2>Attempts Left <span id="number-of-guesses"
-                            class="badge badge-secondary badge-warning">6</span>
+                    <h2>Attempts Left: <span id="number-of-guesses" class="badge badge-secondary dark-side">6</span>
                     </h2>
                 </div>
             </div>
             <div class="col-sm-12" id="player-fail">
+                <p class="final-solution"></p>
                 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/ONBAMgTC4dw?controls=0"
                     frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe> -->
-                <img src="./assets/images/allTooEasy.jpg" class="img-fluid" alt="Word Guess Title">
-                <h1>ALL TOO EASY...</h1>
+                <img id="fail-image" src="./assets/images/allTooEasy.jpg" class="img-fluid" alt="Darth Vader">
+                <audio autoplay>
+                    <source src="./assets/sounds/all2easy.mp3" type="audio/mpeg">
+                </audio>
+                <h1 id="too-easy">ALL TOO EASY...</h1>
                 <h1>Press Any Key To Continue...</h1>
             </div>
             <div class="col-sm-12" id="player-win">
+                <p class="final-solution"></p>
                 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/maOaDsZ1oAM?controls=0"
                     frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe> -->
-                <img src="./assets/images/deathstar.jpg" class="img-fluid" alt="Word Guess Title">
+                <img id="win-image" src="./assets/images/kenobi.jpg" class="img-fluid" alt="Obi-Wan Kenobi">
+                <audio autoplay>
+                    <source src="./assets/sounds/force.mp3" type="audio/mpeg">
+                </audio>
                 <h1>THE FORCE WILL BE WITH YOU...</h1>
                 <h1>ALWAYS...</h1>
                 <h1>Press Any Key To Continue...</h1>
