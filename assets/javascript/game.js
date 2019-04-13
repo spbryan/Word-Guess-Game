@@ -74,6 +74,7 @@ function playGame(character) {
             if (isPuzzleSolved()) {
                 finalSolution.textContent = "(Answer: " + puzzleSolution.join("") + ")";
                 resetGame();
+                document.getElementById('win-sound').play();
                 displayElement(playerWin, true);
                 numberOfWins.innerHTML = ++winCtr;
             }
@@ -87,6 +88,7 @@ function playGame(character) {
         if (guessCtr === 0) {
             finalSolution.textContent = "(Answer: " + puzzleSolution.join("") + ")";
             resetGame();
+            document.getElementById('fail-sound').play();
             displayElement(playerFail, true);
             numberOfLosses.innerHTML = ++lossCtr;
         }
@@ -222,6 +224,7 @@ function generateRandomStarWarsCharacter() {
     //     console.log("1" + starWarsCharacter);
     // }
     // request.send();
+    
 
     //30 characters from original trilogy
     var starWarsCharacterList = ["Luke Skywalker", "C-3P0", "R2-D2",
@@ -236,3 +239,7 @@ function generateRandomStarWarsCharacter() {
     var thisCharacter = starWarsCharacterList[Math.floor(Math.random() * 30)].toUpperCase();
     puzzleSolution = thisCharacter.split('');
 }
+
+window.onload = function() {
+    var context = new AudioContext();
+  }
